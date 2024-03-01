@@ -34,6 +34,7 @@ export const TransactionForm = ({user}) => {
 
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         userData['transactions'].push(transaction);
@@ -92,7 +93,7 @@ export const TransactionForm = ({user}) => {
 
             <label className='font-semibold'>Description</label>
             <textarea id="description" name="description" onChange={handleChange} className='rounded-lg p-3'></textarea>
-            <input type="submit" value="Create Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5'/>
+            <input type="submit" value="Create Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5' />
         </form>
     </div>
   )
