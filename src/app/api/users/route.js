@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
     try{
         const body = await request.json();
-        const userData = body.formData;
+        const userData = body.userData;
         await User.create(userData);
         return NextResponse.json({message: "Success"}, {status: 201})
     } catch (error) {

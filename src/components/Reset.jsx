@@ -30,7 +30,7 @@ export const Reset = ({user}) => {
     }
   return (
     <div>
-        <button onClick={handleClick} className='fixed bottom-10 right-10 w-[80px] h-[80px] rounded-full bg-indigo-500 text-white font-bold shadow-lg'>
+        <button onClick={handleClick} className='fixed bottom-10 right-10 w-[80px] h-[80px] rounded-full bg-indigo-500 text-white font-bold shadow-lg hover:scale-105 transition-transform duration-300'>
             Reset
         </button>
     </div>
