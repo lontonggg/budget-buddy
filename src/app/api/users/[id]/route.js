@@ -1,10 +1,11 @@
 import User from "@/models/User";
+import { NextResponse } from "next/server";
 
 export async function PUT(req, {params}){
     try {
         const {id} = params;
         const body = await req.json()
-        const userData = body.formData
+        const userData = body.userData
 
         const updatedUserData = await User.findByIdAndUpdate(id, {
             ...userData

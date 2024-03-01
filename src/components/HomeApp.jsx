@@ -5,7 +5,6 @@ import { Balance } from './Balance'
 export const HomeApp = ({user}) => {
   return (
     <div>
-      <Header/>
       <Balance user={user}/>
     </div>
   )
