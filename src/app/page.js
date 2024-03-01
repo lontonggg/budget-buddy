@@ -1,4 +1,5 @@
 import { HomeApp } from "@/components/HomeApp";
+import { TransactionsLayout } from "@/components/TransactionsContainer";
 
 const Home = async () => {
     const getUser = async () => {
@@ -16,7 +17,7 @@ const Home = async () => {
 
     return (
         <div>
-        <HomeApp user={users[0]}/>
+          <HomeApp user={users[0]}/>
         </div>
     );
 }

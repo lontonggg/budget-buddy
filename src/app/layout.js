@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-slate-100 h-screen max-h-screen">
+        <div className="bg-slate-100 h-fit">
           <Header />
           {children}
         </div>
