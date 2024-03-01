@@ -1,9 +1,24 @@
 import { HomeApp } from "@/components/HomeApp";
 
-export default function Home() {
-  return (
-    <div>
-      <HomeApp/>
-    </div>
-  );
+const Home = async () => {
+    const getUser = async () => {
+      try{
+        const res = await fetch(`http://localhost:3000/api/users`, {
+          cache: "no-store"
+        })
+        return res.json();
+      }catch (error){
+        console.log("Failed to get user", error)
+      }
+    }
+    
+    const { users } = await getUser();
+
+    return (
+        <div>
+        <HomeApp user={users[0]}/>
+        </div>
+    );
 }
+
+export default Home;
