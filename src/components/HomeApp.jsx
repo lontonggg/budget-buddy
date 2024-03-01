@@ -8,6 +8,5 @@ export const HomeApp = () => {
       <Header/>
       <Balance/>
     </div>
-    
   )
 }
