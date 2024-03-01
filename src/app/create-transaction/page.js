@@ -17,7 +17,7 @@ const user = users[0]
 
 export default function Page({}) {
   return (
-    <div>
+    <div className='h-screen p-20'>
       <TransactionForm user={user}/>
     </div>
   )

@@ -1,11 +1,14 @@
 import React from 'react'
-import { Header } from './Header'
+import { TransactionsLayout } from './TransactionsContainer'
 import { Balance } from './Balance'
+import { Reset } from './Reset'
 
 export const HomeApp = ({user}) => {
   return (
-    <div>
-      <Balance user={user}/>
+    <div className='flex flex-col justify-center items-center p-5'>
+      <Balance user={user} />
+      <TransactionsLayout user={user} />
+      <Reset user={user} />
     </div>
   )
 }
