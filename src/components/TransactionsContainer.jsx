@@ -4,8 +4,7 @@
 import { Transactions } from './Transactions'
 
 
-export const TransactionsLayout = ({user}) => {
-  const transactions = user.transactions
+export const TransactionsContainer = ({transactions}) => {
 
   return (
     <div className='bg-white h-max-screen w-10/12 rounded-2xl m-10 shadow-xl'>
