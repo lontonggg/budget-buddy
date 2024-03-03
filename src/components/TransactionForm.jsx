@@ -6,60 +6,74 @@ import { useState } from 'react'
 
 export const TransactionForm = ({user}) => {
     const router = useRouter();
-    const userData = {
-        name: "",
-        balance: 0,
-        income: 0,
-        expense: 0,
-        transactions: []
-    }
-
-    if(user != null){
-        userData['name'] = user.name
-        userData['balance'] = user.balance 
-        userData['income'] = user.income
-        userData['expense'] = user.expense 
-        userData['transactions'] = user.transactions 
-    }
-   
 
     const initialTransaction = {
         title: "",
         description: "",
         type: "",
         amount: 0,
+        user_id: user.id,
     }
 
-    const [transaction, setTransaction] = useState(initialTransaction);
+    const userData = {
+        balance: user.balance,
+        income: user.income,
+        expense: user.expense
+    }
 
+    const [transactionData, setTransaction] = useState(initialTransaction);
 
-    const handleSubmit = async (e) => {
+    const createTransaction = async () => {
+        transactionData['amount'] = parseInt(transactionData.amount)
 
-        e.preventDefault();
-
-        userData['transactions'].push(transaction);
-       
-
-        if(transaction.type === "Income"){
-            userData['balance'] = user.balance + parseInt(transaction.amount);
-            userData['income'] = user.income + parseInt(transaction.amount);
-        } else{ 
-            userData['balance'] = user.balance - parseInt(transaction.amount);
-            userData['expense'] = user.expense + parseInt(transaction.amount);
-        }
-
-        const response = await fetch(`/api/users/${user._id}`, {
-            method: "PUT",
-            body: JSON.stringify({userData}),
-            'content-type' : 'application/json'
+        const res = await fetch("/api/transactions", {
+            method: "POST",
+            body: JSON.stringify(transactionData),
+            'content-type': 'application/json'
         })
 
-        if(!response.ok){
-            throw new Error("Transaction Failed");
+        console.log(res);
+
+        if(!res.ok){
+            throw new Error("Failed to create transaction");
         }
-        router.refresh();
-        router.push("/");
-        router.refresh();
+    }
+
+    const updateUserBalance = async () => {
+        const res = await fetch(`/api/users/${user.id}`, {
+            method: "PATCH",
+            body: JSON.stringify(userData),
+            'content-type': 'application/json'
+        })
+
+        console.log(res);
+
+        if(!res.ok){
+            throw new Error("Failed to update user's balance");
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+
+            if(transactionData.type === "Income"){
+                userData['balance'] = user.balance + parseInt(transactionData.amount);
+                userData['income'] = user.income + parseInt(transactionData.amount);
+            } else{ 
+                userData['balance'] = user.balance - parseInt(transactionData.amount);
+                userData['expense'] = user.expense + parseInt(transactionData.amount);
+            }
+    
+            createTransaction()
+            updateUserBalance()
+    
+            router.refresh();
+            router.push("/");
+        } catch (error) {
+            console.log(error)
+        }
+       
     }
 
     const handleChange = (e) => {
@@ -69,8 +83,6 @@ export const TransactionForm = ({user}) => {
         setTransaction((prevState) => ({
             ...prevState, [name]: value
         }))
-
-        console.log(transaction)
     }
 
   
@@ -93,7 +105,7 @@ export const TransactionForm = ({user}) => {
 
             <label className='font-semibold'>Description</label>
             <textarea id="description" name="description" onChange={handleChange} className='rounded-lg p-3'></textarea>
-            <input type="submit" value="Create Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5' />
+            <input type="submit" value="Create Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5 hover:opacity-90' />
         </form>
     </div>
   )

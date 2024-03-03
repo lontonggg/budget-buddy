@@ -1,21 +1,29 @@
-import User from "@/models/User";
+import { prisma } from "@/utils/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
+    const {name, income, expense, balance, transactions} = await request.json();
     try{
-        const body = await request.json();
-        const userData = body.userData;
-        await User.create(userData);
-        return NextResponse.json({message: "Success"}, {status: 201})
+        const createdUser = await prisma.user.create({
+            data: {
+                name,
+                income,
+                expense,
+                balance,
+                transactions
+            }
+        });
+        return NextResponse.json({message: "Success", data: createdUser}, {status: 201})
     } catch (error) {
+        console.log(error)
         return NextResponse.json({message: "Error", error}, {status: 500})
     }
 }
 
 export async function GET(request) {
     try{
-        const users = await User.find();
-        return NextResponse.json({users}, {status: 200});
+        const users = await prisma.user.findMany()
+        return NextResponse.json({message: "Success", data:users}, {status: 200});
     } catch (error) {
         return NextResponse.json({message: "Error", error}, {status: 500})
     }

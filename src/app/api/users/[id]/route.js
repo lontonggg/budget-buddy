@@ -1,17 +1,36 @@
-import User from "@/models/User";
+
+import { prisma } from "@/utils/prisma";
 import { NextResponse } from "next/server";
 
-export async function PUT(req, {params}){
-    try {
-        const {id} = params;
-        const body = await req.json()
-        const userData = body.userData
+export async function GET(request, {params}) {
+    const userid = params.id
+    const userData = await prisma.user.findFirst({
+        where:{
+            id: userid
+        }
+    })
+    
+    return NextResponse.json({message: "Get user success", data: userData}, {status: 200})
+}
 
-        const updatedUserData = await User.findByIdAndUpdate(id, {
-            ...userData
+export async function PATCH(request, {params}){
+    try {
+        const userid = params.id
+        const {income, expense, balance} = await request.json();
+       
+        const updatedUser = await prisma.user.update({
+            where: {
+                id:userid
+            },
+            data: {
+                income,
+                expense,
+                balance
+            }
         })
-        return NextResponse.json({message: "User Updated"}, {status: 200});
+        return NextResponse.json({message: "User Updated", updatedUser}, {status: 200});
     } catch (error) {
+        console.log(error)
         return NextResponse.json({message: "Error", error}, {status: 500});
     }
 }
