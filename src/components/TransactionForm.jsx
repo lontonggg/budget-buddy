@@ -15,12 +15,6 @@ export const TransactionForm = ({user}) => {
         user_id: user.id,
     }
 
-    const userData = {
-        balance: user.balance,
-        income: user.income,
-        expense: user.expense
-    }
-
     const [transactionData, setTransaction] = useState(initialTransaction);
 
     const createTransaction = async () => {
@@ -39,7 +33,7 @@ export const TransactionForm = ({user}) => {
         }
     }
 
-    const updateUserBalance = async () => {
+    const updateUserBalance = async (userData) => {
         const res = await fetch(`/api/users/${user.id}`, {
             method: "PATCH",
             body: JSON.stringify(userData),
@@ -54,9 +48,15 @@ export const TransactionForm = ({user}) => {
     }
 
     const handleSubmit = async (e) => {
+        
+        const userData = {
+            balance: user.balance,
+            income: user.income,
+            expense: user.expense
+        }
+
         try {
             e.preventDefault();
-
             if(transactionData.type === "Income"){
                 userData['balance'] = user.balance + parseInt(transactionData.amount);
                 userData['income'] = user.income + parseInt(transactionData.amount);
@@ -66,10 +66,11 @@ export const TransactionForm = ({user}) => {
             }
     
             createTransaction()
-            updateUserBalance()
+            updateUserBalance(userData)
     
             router.refresh();
             router.push("/");
+            router.refresh();
         } catch (error) {
             console.log(error)
         }
