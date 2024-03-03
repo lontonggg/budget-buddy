@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import React from 'react'
 
 export const TransactionPageComponent = ({transaction, user}) => {
@@ -35,7 +36,11 @@ export const TransactionPageComponent = ({transaction, user}) => {
     }
   }
 
+  const [clicked, setClicked] = useState(false);
+
   const handleDelete = async (e) =>  {
+    setClicked(true);
+
     e.preventDefault()
 
     const userData = {
@@ -92,7 +97,7 @@ export const TransactionPageComponent = ({transaction, user}) => {
                   )}
                 <div className='text-xl font-semibold'>Description :</div>
                 <div className='text-xl text-gray-500 mb-5'>{transaction.description}</div>
-                <button onClick={handleDelete} className='bg-indigo-500 p-3 rounded-xl font-semibold text-white text-xl hover:opacity-90'>Delete Transaction</button>
+                <button onClick={handleDelete} disabled={clicked} className='bg-indigo-500 p-3 rounded-xl font-semibold text-white text-xl hover:opacity-90 disabled:opacity-80'>Delete Transaction</button>
               </div>
             </div>
       </div>
