@@ -4,6 +4,19 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useState } from 'react'
 
+const getUser = async () => {
+    try{
+      const res = await fetch(`http://localhost:3000/api/users/847f4959-cdab-419a-ae00-e7bcb675eee1`, {
+        cache: "no-store"
+      })
+      return res.json();
+    }catch (error){
+      console.log("Failed to get user", error)
+    }
+}
+    
+ 
+  
 export const TransactionForm = ({user}) => {
     const router = useRouter();
 
@@ -12,7 +25,7 @@ export const TransactionForm = ({user}) => {
         description: "",
         type: "",
         amount: 0,
-        user_id: user.id,
+        user_id: "",
     }
 
     const [transactionData, setTransaction] = useState(initialTransaction);
@@ -34,7 +47,7 @@ export const TransactionForm = ({user}) => {
     }
 
     const updateUserBalance = async (userData) => {
-        const res = await fetch(`/api/users/${user.id}`, {
+        const res = await fetch(`/api/users/${userData.id}`, {
             method: "PATCH",
             body: JSON.stringify(userData),
             'content-type': 'application/json'
@@ -48,15 +61,22 @@ export const TransactionForm = ({user}) => {
     }
 
     const handleSubmit = async (e) => {
-        
+        e.preventDefault();
+
+        const userDataGet = await getUser();
+        const user = userDataGet.data;
+
         const userData = {
             balance: user.balance,
             income: user.income,
-            expense: user.expense
+            expense: user.expense,
+            id: user.id
         }
 
+        console.log(userData)
+
         try {
-            e.preventDefault();
+           
             if(transactionData.type === "Income"){
                 userData['balance'] = user.balance + parseInt(transactionData.amount);
                 userData['income'] = user.income + parseInt(transactionData.amount);
@@ -64,7 +84,8 @@ export const TransactionForm = ({user}) => {
                 userData['balance'] = user.balance - parseInt(transactionData.amount);
                 userData['expense'] = user.expense + parseInt(transactionData.amount);
             }
-    
+            
+            transactionData["user_id"] = user.id;
             createTransaction()
             updateUserBalance(userData)
     
