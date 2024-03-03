@@ -9,7 +9,7 @@ export const Transactions = ({transaction}) => {
   return (
     
     <Link href={link}>
-        <div className='relative flex rounded-xl justify-between items-center p-5 shadow-xl border-slate-300 border-2 hover:opacity-80 hover:scale-105 transition-transform duration-300'>
+        <div className='relative flex bg-transparent rounded-xl justify-between items-center p-5 shadow-xl border-slate-300 border-2 hover:opacity-80 hover:scale-105 transition-transform duration-300'>
             <div className='flex flex-col gap-3'>
                     <h1 className='text-l font-bold '>{transaction.title}</h1>
                     <p className='text-sm text-gray-500'>{transaction.description}</p>

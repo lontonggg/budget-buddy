@@ -1,7 +1,6 @@
 import React from 'react'
 import { TransactionsContainer } from './TransactionsContainer'
 import { Balance } from './Balance'
-import { Reset } from './Reset'
 
 export const HomeApp = ({user, transactions}) => {
   return (
