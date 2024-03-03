@@ -12,7 +12,6 @@ const getUser = async () => {
   }
 }
   
-
 const userData = await getUser();
 const user = userData.data;
 
