@@ -72,17 +72,27 @@ export const TransactionPageComponent = ({transaction, user}) => {
                           <div className='flex flex-col gap-3'>
                             <div className='font-bold text-3xl'>{transaction.title}</div>   
                             <p className='text-4xl font-bold text-blue-500 mt-3'>+{formattedAmount}</p>
-                            <div className='text-lg bg-blue-500 w-fit rounded-full text-white px-3 my-3'>{transaction.type}</div>
+                            <div className='flex gap-2'>
+                              <div className='text-lg bg-blue-500 w-fit rounded-full text-white px-3 my-3'>{transaction.type}</div>
+                              <p className='text-lg bg-indigo-500 w-fit rounded-full text-white px-3 my-3'>{transaction.category}</p>
+                            </div>
                           </div>
                         </div>
                     ): (
                         <div>
-                          <p className='text-xl font-bold text-red-500'>-{formattedAmount}</p>
+                          <div className='flex flex-col gap-3'>
+                            <div className='font-bold text-3xl'>{transaction.title}</div>   
+                            <p className='text-4xl font-bold text-red-500 mt-3'>-{formattedAmount}</p>
+                            <div className='flex gap-2'>
+                              <div className='text-lg bg-red-500 w-fit rounded-full text-white px-3 my-3'>{transaction.type}</div>
+                              <p className='text-lg bg-indigo-500 w-fit rounded-full text-white px-3 my-3'>{transaction.category}</p>
+                            </div>
+                          </div>
                         </div>
                   )}
-                <div className='text-xl font-semibold'>Deskripsi :</div>
+                <div className='text-xl font-semibold'>Description :</div>
                 <div className='text-xl text-gray-500 mb-5'>{transaction.description}</div>
-                <button onClick={handleDelete} className='bg-indigo-500 p-3 rounded-xl font-semibold text-white text-xl hover: opacity-90'>Delete Transaction</button>
+                <button onClick={handleDelete} className='bg-indigo-500 p-3 rounded-xl font-semibold text-white text-xl hover:opacity-90'>Delete Transaction</button>
               </div>
             </div>
       </div>

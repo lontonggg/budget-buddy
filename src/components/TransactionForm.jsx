@@ -15,8 +15,6 @@ const getUser = async () => {
     }
 }
     
- 
-  
 export const TransactionForm = ({user}) => {
     const router = useRouter();
 
@@ -25,6 +23,7 @@ export const TransactionForm = ({user}) => {
         description: "",
         type: "",
         amount: 0,
+        category: "",
         user_id: "",
     }
 
@@ -105,9 +104,35 @@ export const TransactionForm = ({user}) => {
         setTransaction((prevState) => ({
             ...prevState, [name]: value
         }))
+
+        console.log(transactionData)
     }
 
-  
+    const [selected, setSelected] = useState("");
+
+    const handleSelect = (event) => {
+        setSelected(event.target.value);
+        setTransaction((prevState) => ({
+            ...prevState, ["type"]: event.target.value
+        }))
+    };
+
+    const incomeSelection = ["Allowance", "Salary", "Bonus", "Other"]
+    const expenseSelection = ["Food", "Transportation", "Education", "Apparel", "Social Life", "Household", "Other"]
+
+
+    let type = null;
+    let options = null;
+    if(selected === "Income"){
+        type = incomeSelection;
+    } else if(selected === "Expense"){
+        type = expenseSelection;
+    }
+
+    if(type) {
+        options = type.map((el) => <option key={el}>{el}</option>)
+    }
+
     return (
     <div className='flex justify-center align-center pt-7'>
         <form className='flex flex-col w-1/2 gap-3' method='post' onSubmit={handleSubmit}>
@@ -116,7 +141,7 @@ export const TransactionForm = ({user}) => {
             <input id="title" name="title" required={true} className='rounded-lg p-3' onChange={handleChange} />
 
             <label className='font-semibold'>Type</label>
-            <select id="type" name="type" className='rounded-lg p-3' onChange={handleChange}>
+            <select id="type" name="type" className='rounded-lg p-3' onChange={handleSelect}>
                 <option selected={true} disabled={true}>Please select type</option>
                 <option>Income</option>
                 <option>Expense</option>
@@ -125,6 +150,12 @@ export const TransactionForm = ({user}) => {
             <label className='font-semibold'>Amount</label>
             <input type="number" id='amount' name='amount' required={true} defaultValue={0} min={0} onChange={handleChange} className='rounded-lg p-3'/>
 
+            <label className='font-semibold'>Category</label>
+            
+            <select id="category" name="category" className='rounded-lg p-3' onChange={handleChange}>
+                <option selected={true} disabled={true}>Please select category</option>
+                {options}
+            </select>
             <label className='font-semibold'>Description</label>
             <textarea id="description" name="description" onChange={handleChange} className='rounded-lg p-3'></textarea>
             <input type="submit" value="Create Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5 hover:opacity-90' />

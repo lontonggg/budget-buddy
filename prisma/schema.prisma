@@ -32,6 +32,7 @@ model Transaction {
   type String
   description String?
   amount Int
+  category String
 
   user_id String
   user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)

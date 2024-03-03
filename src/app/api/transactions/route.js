@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try{
-        const {title, type, amount, description, user_id} = await request.json();
+        const {title, type, amount, description, user_id, category} = await request.json();
         const createdTransaction = await prisma.transaction.create({
             data: {
                 title,
@@ -12,6 +12,7 @@ export async function POST(request) {
                 amount,
                 description,
                 user_id,
+                category,
             }
         })
         return NextResponse.json({message: "Success", data: createdTransaction}, {status: 201})
