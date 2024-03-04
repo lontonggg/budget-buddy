@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 export const TransactionsContainer = () => {
   const [transactions, setTransactions] = useState([]);
+  const [isFound, setIsFound] = useState(true);
 
   useEffect(() => {
     const getTransactionsOfUser = async () => {
@@ -21,23 +22,24 @@ export const TransactionsContainer = () => {
      
       getTransactionsOfUser();
     }, [])
-
-    
-
   return (
     <div className='bg-white h-max-screen w-10/12 rounded-2xl m-10 shadow-xl'>
         <div className='flex justify-between items-center bg-indigo-500 p-5 rounded-t-xl text-xl text-white font-bold '>
         <div>Transactions</div>
-          <SearchTransaction getSearchResults={(results) => setTransactions(results)} />
+          <SearchTransaction getSearchResults={(results) => setTransactions(results)} searchFound={(isFound) => setIsFound(isFound)} />
       </div>
         <div className='flex flex-col p-10 gap-4 h-[500px] overflow-y-scroll'>
-            {transactions && transactions.length > 0 ? (
-                transactions.map((transaction, index) => (
-                  <Transactions key={index} transaction={transaction}/>
-              ))
-            ) : (
+          {transactions.length > 0 ? (
+            transactions.map((transaction, index) => (
+              <Transactions key={index} transaction={transaction}/>
+            ))
+          ) : (
+            isFound ? (
               <p className="text-center text-2xl text-gray-500 mt-20">{"You don't have any transactions."}</p>
-            )}
+            ) : (
+              <p className="text-center text-2xl text-gray-500 mt-20">Transactions not found.</p>
+            )
+          )}
         </div>
     </div>
   )

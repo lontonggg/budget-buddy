@@ -1,17 +1,20 @@
 import React from 'react'
 import { useState } from 'react';
 
-export default function SearchTransaction({getSearchResults}) {
+export default function SearchTransaction({getSearchResults, searchFound}) {
     const [query, setQuery] = useState('')
 
     const handleSubmit = async (e) => {
-       
         e.preventDefault();
         console.log(query)
         const response = await fetch(`http://localhost:3000/api/transactions?id=847f4959-cdab-419a-ae00-e7bcb675eee1&title=${query}`)
         const filteredData = await response.json();
         getSearchResults(filteredData.data);
-        console.log(filteredData.data)
+        if(filteredData.data.length == 0){
+            searchFound(false);
+        } else{
+            searchFound(true);
+        }
     }   
 
   return (
