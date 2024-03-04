@@ -26,7 +26,18 @@ export async function GET(request){
     const searchParams = request.nextUrl.searchParams;
     const userid = searchParams.get("id")
     const titleParams = searchParams.get("title")
+    const typeParams = searchParams.get("type")
 
+    if(typeParams) {
+        const getFilteredTranscationsByUser = await prisma.transaction.findMany({
+            where: {
+                user_id: userid,
+                type: typeParams
+            }
+        })
+        return NextResponse.json({message: "Succes get transactions of user", data: getFilteredTranscationsByUser}, {status: 200})
+    }
+    
     if(titleParams) {
         const getFilteredTranscationsByUser = await prisma.transaction.findMany({
             where: {
