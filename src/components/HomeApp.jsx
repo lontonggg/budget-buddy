@@ -6,7 +6,7 @@ export const HomeApp = ({user, transactions}) => {
   return (
     <div className='flex flex-col justify-center items-center p-5'>
       <Balance user={user} />
-      <TransactionsContainer transactions={transactions}/>
+      <TransactionsContainer/>
     </div>
   )
 }
