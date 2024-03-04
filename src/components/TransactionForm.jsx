@@ -120,7 +120,7 @@ export const TransactionForm = ({user}) => {
     };
 
     const incomeSelection = ["Allowance", "Salary", "Bonus", "Other"]
-    const expenseSelection = ["Food", "Transportation", "Education", "Apparel", "Social Life", "Household", "Other"]
+    const expenseSelection = ["Food", "Transportation", "Education", "Apparel", "Social Life", "Other"]
 
     let type = null;
     let options = null;
