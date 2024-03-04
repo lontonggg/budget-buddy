@@ -25,15 +25,29 @@ export async function POST(request) {
 export async function GET(request){
     const searchParams = request.nextUrl.searchParams;
     const userid = searchParams.get("id")
+    const titleParams = searchParams.get("title")
+
+    if(titleParams) {
+        const getFilteredTranscationsByUser = await prisma.transaction.findMany({
+            where: {
+                user_id: userid,
+                title: {
+                    contains: titleParams,
+                    mode: "insensitive"
+                }
+            }
+        })
+        return NextResponse.json({message: "Succes get transactions of user", data: getFilteredTranscationsByUser}, {status: 200})
+    }
 
     if(userid){
         const getTranscationsByUser = await prisma.transaction.findMany({
             where: {
-                user_id: userid
+                user_id: userid,
             }
         })
         return NextResponse.json({message: "Succes get transactions of user", data: getTranscationsByUser}, {status: 200})
-    }
+    } 
 
     const getTranscationsByUser = await prisma.transaction.findMany()
     return NextResponse.json({message: "Succes get transactions", data: getTranscationsByUser}, {status: 200})
