@@ -1,5 +1,6 @@
 import { TransactionPageComponent } from '@/components/TransactionPageComponent'
 import React from 'react'
+import { Header } from '@/components/Header'
 
 const getTransactionsOfUser = async (id) => {
     try{
@@ -12,9 +13,9 @@ const getTransactionsOfUser = async (id) => {
     }
 }
 
-const getUser = async () => {
+const getUser = async (id) => {
   try{
-    const res = await fetch(`http://localhost:3000/api/users/847f4959-cdab-419a-ae00-e7bcb675eee1`, {
+    const res = await fetch(`http://localhost:3000/api/users/${id}`, {
       cache: "no-store"
     })
     return res.json();
@@ -32,7 +33,10 @@ const TransactionPage = async ({params}) => {
   const user = userData.data;
 
   return (
-    <TransactionPageComponent transaction={transactions} user={user}/>
+    <div>
+      <Header />
+      <TransactionPageComponent transaction={transactions} user={user}/>
+    </div>
   )
 }
 

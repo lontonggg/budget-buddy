@@ -4,15 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import React from 'react'
 
-export const TransactionPageComponent = ({transaction, user}) => {
+export const TransactionPageComponent = ({transaction}) => {
+  const [user, setUser] = useState(null);
+
   const router = useRouter();
 
   const formattedAmount = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
     transaction.amount,
   );
 
- 
-  
   const deleteTransaction = async () => {
     const res = await fetch(`http://localhost:3000/api/transactions/${transaction.id}`, {
       method: "DELETE",
@@ -22,6 +22,22 @@ export const TransactionPageComponent = ({transaction, user}) => {
     }
   }
 
+  const getUser = async () => {
+    try{
+    const res = await fetch(`http://localhost:3000/api/users/${transaction.user_id}`, {
+        cache: "no-store"
+    })
+    
+    const data = await res.json();
+    const user = data.data
+    setUser(user);
+    }catch (error){
+    console.log("Failed to get user", error)
+    }
+
+  }
+
+  getUser();
 
   const updateUser = async(userData) => {
     const res = await fetch(`/api/users/${transaction.user_id}`, {
@@ -29,7 +45,7 @@ export const TransactionPageComponent = ({transaction, user}) => {
       body: JSON.stringify(userData),
       'content-type': 'application/json'
     })
-    console.log(res);
+  
 
     if(!res.ok){
         throw new Error("Failed to update user's balance");
