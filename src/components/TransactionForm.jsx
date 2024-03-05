@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useState } from 'react'
 
-const getUser = async () => {
+const getUser = async (id) => {
     try{
-      const res = await fetch(`http://localhost:3000/api/users/847f4959-cdab-419a-ae00-e7bcb675eee1`, {
+      const res = await fetch(`http://localhost:3000/api/users/${id}`, {
         cache: "no-store"
       })
       return res.json();
@@ -15,7 +15,7 @@ const getUser = async () => {
     }
 }
     
-export const TransactionForm = ({user}) => {
+export const TransactionForm = ({userId}) => {
     const router = useRouter();
 
     const initialTransaction = {
@@ -38,8 +38,6 @@ export const TransactionForm = ({user}) => {
             'content-type': 'application/json'
         })
 
-        console.log(res);
-
         if(!res.ok){
             throw new Error("Failed to create transaction");
         }
@@ -52,8 +50,6 @@ export const TransactionForm = ({user}) => {
             'content-type': 'application/json'
         })
 
-        console.log(res);
-
         if(!res.ok){
             throw new Error("Failed to update user's balance");
         }
@@ -63,7 +59,7 @@ export const TransactionForm = ({user}) => {
         setClicked(true)
         e.preventDefault();
 
-        const userDataGet = await getUser();
+        const userDataGet = await getUser(userId);
         const user = userDataGet.data;
 
         const userData = {
@@ -72,8 +68,6 @@ export const TransactionForm = ({user}) => {
             expense: user.expense,
             id: user.id
         }
-
-        console.log(userData)
 
         try {
            
@@ -106,8 +100,6 @@ export const TransactionForm = ({user}) => {
         setTransaction((prevState) => ({
             ...prevState, [name]: value
         }))
-
-        console.log(transactionData)
     }
 
     const [selected, setSelected] = useState("");

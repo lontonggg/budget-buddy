@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Select from 'react-select';
 
 
-export default function SearchTransaction({getSearchResults, searchFound}) {
+export default function SearchTransaction({getSearchResults, searchFound, userId}) {
     const [query, setQuery] = useState('')
     const [filter, setFilter] = useState('');
     const [category, setCategory] = useState('');
@@ -12,7 +12,7 @@ export default function SearchTransaction({getSearchResults, searchFound}) {
 
 
     const getFilterTransaction = async (e) => {
-        const response = await fetch(`http://localhost:3000/api/transactions?id=847f4959-cdab-419a-ae00-e7bcb675eee1&type=${filter}`)
+        const response = await fetch(`http://localhost:3000/api/transactions?id=${userId}&type=${filter}`)
         const filteredData = await response.json();
         getSearchResults(filteredData.data);
         if(filteredData.data.length == 0){
@@ -46,7 +46,7 @@ export default function SearchTransaction({getSearchResults, searchFound}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:3000/api/transactions?id=847f4959-cdab-419a-ae00-e7bcb675eee1&title=${query}`)
+        const response = await fetch(`http://localhost:3000/api/transactions?id=${userId}&title=${query}`)
         const filteredData = await response.json();
         getSearchResults(filteredData.data);
         if(filteredData.data.length == 0){
@@ -58,7 +58,7 @@ export default function SearchTransaction({getSearchResults, searchFound}) {
 
     const handleCategoryFilter = async (e) => {
 
-        const response = await fetch(`http://localhost:3000/api/transactions?id=847f4959-cdab-419a-ae00-e7bcb675eee1&category=${category}`)
+        const response = await fetch(`http://localhost:3000/api/transactions?id=${userId}&category=${category}`)
         const filteredData = await response.json();
         const data = filteredData.data
 

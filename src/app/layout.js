@@ -14,7 +14,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <div className="bg-slate-100 h-fit">
-          <Header />
           {children}
         </div>
       </body>
