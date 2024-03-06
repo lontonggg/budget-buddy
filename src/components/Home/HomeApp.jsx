@@ -6,7 +6,7 @@ import { Balance } from './Balance'
 
 export const HomeApp = ({userId}) => {
   return (
-    <div className='flex justify-center items-center h-screen w-screen gap-5 px-20'>
+    <div className='flex justify-center items-center h-screen w-screen gap-5 px-20 '>
       <Balance userId={userId} />
       <TransactionsContainer userId={userId}/>
     </div>
