@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import { TransactionsContainer } from './TransactionsContainer'
+import { TransactionsContainer } from '@/components/Transactions/TransactionsContainer'
 import { Balance } from './Balance'
 
 export const HomeApp = ({userId}) => {

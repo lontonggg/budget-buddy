@@ -1,4 +1,4 @@
-import { TransactionForm } from '@/components/TransactionForm';
+import { TransactionForm } from '@/components/Transactions/TransactionForm';
 import React from 'react'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/utils/auth';

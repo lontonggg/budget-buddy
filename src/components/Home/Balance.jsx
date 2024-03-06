@@ -29,7 +29,7 @@ export const Balance = ({userId}) => {
             }
         }
         getUser();
-        }, []);
+        }, [userId]);
     return (
         <div className='flex flex-col bg-white gap-10 justify-between items-center p-10 py-20 h-max-screen h-5/6 w-fit rounded-xl shadow-xl'>
            <div className='hover:scale-105 transition-transform duration-300'>

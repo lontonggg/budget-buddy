@@ -32,7 +32,7 @@ export const TransactionPageComponent = ({transaction}) => {
     const user = data.data
     setUser(user);
     }catch (error){
-    console.log("Failed to get user", error)
+      console.log("Failed to get user", error)
     }
 
   }

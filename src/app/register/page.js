@@ -1,4 +1,4 @@
-import { Register } from '@/components/Register'
+import { Register } from '@/components/Auth/Register'
 import React from 'react'
 
 export default function page() {

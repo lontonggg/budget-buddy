@@ -1,6 +1,6 @@
-import { TransactionPageComponent } from '@/components/TransactionPageComponent'
+import { TransactionPageComponent } from '@/components/Transactions/TransactionPageComponent'
 import React from 'react'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/Home/Header'
 
 const getTransactionsOfUser = async (id) => {
     try{

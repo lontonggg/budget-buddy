@@ -1,10 +1,9 @@
 
-import { Header } from "@/components/Header";
+import { Header } from "@/components/Home/Header";
 import {getServerSession} from "next-auth"
 import { authOptions } from "@/utils/auth";
-import { useRouter } from "next/navigation";
-import { HomeApp } from "@/components/HomeApp";
-import { WelcomePage } from "@/components/WelcomePage";
+import { HomeApp } from "@/components/Home/HomeApp";
+import { WelcomePage } from "@/components/Home/WelcomePage";
 
 const Home = async () => {
     const session = await getServerSession(authOptions);

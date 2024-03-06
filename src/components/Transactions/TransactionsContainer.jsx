@@ -17,11 +17,10 @@ export const TransactionsContainer = ({userId}) => {
         const transactionData = await res.json();
         const transaction = transactionData.data;
         setTransactions(transaction);
-        console.log(transaction);
       }
      
       getTransactionsOfUser();
-    }, [])
+    }, [userId])
   return (
     <div className='bg-white h-max-screen h-5/6 w-screen rounded-2xl shadow-xl'>
         <div className='flex justify-between items-center bg-indigo-500 p-5 rounded-t-xl text-xl text-white font-bold '>
