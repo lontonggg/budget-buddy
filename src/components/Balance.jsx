@@ -3,6 +3,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { DoughnutChart} from './DoughnutChart';
 
 export const Balance = ({userId}) => {
     const [user, setUser] = useState(null);
@@ -27,31 +28,33 @@ export const Balance = ({userId}) => {
             console.log("Failed to get user", error)
             }
         }
-
         getUser();
-        
-    
         }, []);
     return (
-        <div className='flex bg-white gap-20 justify-center items-center px-20 py-10 w-fit rounded-xl shadow-xl'>
-            <div className='hover:scale-105 transition-transform duration-300'>
-                <div className='text-xl'>Income</div>
-                <div className='font-bold text-blue-500 text-2xl'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
-                income,
-              ))}</div>
-            </div>  
-            <div className='hover:scale-105 transition-transform duration-300'>
-                <div className='text-xl'>Expenses</div>
-                <div className='font-bold text-red-500 text-2xl'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
-                expense,
-              ))}</div>
-            </div>
-            <div className='hover:scale-105 transition-transform duration-300'>
-                <div className='text-xl'>Total Balance</div>
-                <div className='font-bold text-2xl'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
+        <div className='flex flex-col bg-white gap-10 justify-between items-center p-10 py-20 h-max-screen h-5/6 w-fit rounded-xl shadow-xl'>
+           <div className='hover:scale-105 transition-transform duration-300'>
+                <div className='text-3xl text-left'>Total Balance</div>
+                <div className='font-bold text-4xl text-left'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
                 balance,
-              ))}</div>
+            ))}</div>
+            <div className='flex gap-10 mt-10'>
+                <div className='hover:scale-105 transition-transform duration-300'>
+                    <div className='text-lg'>Income</div>
+                    <div className='font-bold text-blue-500 text-lg'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
+                    income,
+                ))}</div>
+                </div>  
+                <div className='hover:scale-105 transition-transform duration-300'>
+                    <div className='text-lg'>Expenses</div>
+                    <div className='font-bold text-red-500 text-lg'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
+                    expense,
+                ))}</div>
+                </div>
             </div>
+            </div>
+
+            <DoughnutChart income={(income)} expense={(expense)}/>
+            
         </div>
   )
 }

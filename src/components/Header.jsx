@@ -18,7 +18,6 @@ export const Header = () => {
             <button onClick={() => signOut()} className='p-5 text-2xl hover:scale-105 hover:font-bold transition-transform duration-300' >Logout</button>
           </Link>
         </div>
-        
     </nav>
   )
 }
