@@ -11,7 +11,7 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
 
 
     const getFilterTransaction = async (e) => {
-        const response = await fetch(`http://localhost:3000/api/transactions?id=${userId}&type=${filter}`)
+        const response = await fetch(`https://budget-buddy-website.vercel.app/api/transactions?id=${userId}&type=${filter}`)
         const filteredData = await response.json();
         getSearchResults(filteredData.data);
         if(filteredData.data.length == 0){
@@ -84,7 +84,7 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
         value: selection,
         label: selection
     }))
-    
+
   return (
     <div className='flex gap-3 items-center'>
         <form onSubmit={handleIncomeFilter} className='flex gap-3'>

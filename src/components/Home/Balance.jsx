@@ -14,7 +14,7 @@ export const Balance = ({userId}) => {
     useEffect(() => {
         const getUser = async () => {
             try{
-            const res = await fetch(`http://localhost:3000/api/users/${userId}`, {
+            const res = await fetch(`https://budget-buddy-website.vercel.app/api/users/${userId}`, {
                 cache: "no-store"
             })
             
