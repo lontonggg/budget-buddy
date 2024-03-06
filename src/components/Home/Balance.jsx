@@ -31,8 +31,8 @@ export const Balance = ({userId}) => {
         getUser();
         }, [userId]);
     return (
-        <div className='flex flex-col justify-center items-center gap-5 h-max-screen h-5/6 w-fit'>
-            <div className='flex flex-col bg-white gap-10 justify-between items-center p-10  w-fit rounded-xl shadow-xl'>
+        <div className='flex flex-col justify-center items-center gap-5 h-max-screen h-5/6'>
+            <div className='flex flex-col bg-white gap-10 justify-between items-center p-10 rounded-xl shadow-xl'>
             <div className='hover:scale-105 transition-transform duration-300'>
                     <div className='text-3xl text-left'>Total Balance</div>
                     <div className='font-bold text-4xl text-left'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
