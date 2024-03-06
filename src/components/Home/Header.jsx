@@ -12,7 +12,7 @@ export const Header = () => {
         </Link>
         <div className='flex justify-center items-center'>
           <Link href={"/create-transaction"}>
-              <button className='p-5 text-2xl hover:scale-105 hover:font-bold transition-transform duration-300'>Create Transaction</button>
+              <button className='p-5 text-2xl hover:scale-105 hover:font-bold transition-transform duration-300'>Add Transaction</button>
           </Link>
           <Link href={"/"}>
             <button onClick={() => signOut()} className='p-5 text-2xl hover:scale-105 hover:font-bold transition-transform duration-300' >Logout</button>

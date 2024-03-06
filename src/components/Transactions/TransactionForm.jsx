@@ -135,7 +135,7 @@ export const TransactionForm = ({userId}) => {
         <div className='flex justify-center align-center'>
             <div className='bg-white h-max-screen w-max-screen w-1/2 rounded-2xl shadow-xl'>
             <div className='flex justify-between items-center bg-indigo-500 p-5 rounded-t-xl text-xl text-white font-bold '>
-                <div>Create Transactions</div>
+                <div>Add Transaction</div>
             </div>
             <form className='flex flex-col w-full gap-3 p-6' method='post' onSubmit={handleSubmit}>
                 <label className='font-semibold'>Title</label>
@@ -159,7 +159,7 @@ export const TransactionForm = ({userId}) => {
                 </select>
                 <label className='font-semibold'>Description</label>
                 <textarea id="description" name="description" onChange={handleChange} className='rounded-lg p-3 border-slate-300 border-2 resize-none h-[125px]'></textarea>
-                <input type="submit" value="Create Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5 hover:opacity-90 disabled:opacity-80' disabled={clicked} />
+                <input type="submit" value="Add Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5 hover:opacity-90 disabled:opacity-80' disabled={clicked} />
             </form>
             </div>
 
