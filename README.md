@@ -3,8 +3,10 @@ https://budget-buddy-website.vercel.app/
 
 A simple React Based money management app that can help you track your incomes and expenses. I used Next.JS for both front-end and back-end and I also used PostgreSQL through Prisma ORM and Neon as my database.
 
-Dummy Acount :
+### Dummy Account :
+
 Username : Dummy
+
 Password : 12345678
 
 ## Installation
