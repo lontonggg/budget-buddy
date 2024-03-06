@@ -23,12 +23,12 @@ export const TransactionsContainer = ({userId}) => {
       getTransactionsOfUser();
     }, [])
   return (
-    <div className='bg-white h-max-screen w-10/12 rounded-2xl m-10 shadow-xl'>
+    <div className='bg-white h-max-screen h-5/6 w-screen rounded-2xl shadow-xl'>
         <div className='flex justify-between items-center bg-indigo-500 p-5 rounded-t-xl text-xl text-white font-bold '>
         <div>Transactions</div>
           <SearchTransaction getSearchResults={(results) => setTransactions(results)} searchFound={(isFound) => setIsFound(isFound)} userId={userId} />
       </div>
-        <div className='flex flex-col p-10 gap-4 h-[500px] overflow-y-scroll'>
+        <div className='flex flex-col p-10 gap-4 h-max-screen h-5/6 overflow-y-scroll'>
           {transactions.length > 0 ? (
             transactions.map((transaction, index) => (
               <Transactions key={index} transaction={transaction}/>

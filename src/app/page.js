@@ -21,8 +21,6 @@ const Home = async () => {
         <WelcomePage/>
       )
     }
-
-    
 }
 
 export default Home;
