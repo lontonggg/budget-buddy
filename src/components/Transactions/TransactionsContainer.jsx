@@ -28,17 +28,17 @@ export const TransactionsContainer = ({userId}) => {
           <SearchTransaction getSearchResults={(results) => setTransactions(results)} searchFound={(isFound) => setIsFound(isFound)} userId={userId} />
       </div>
         <div className='flex flex-col p-10 gap-4 h-max-screen h-5/6 overflow-y-scroll'>
-          {transactions.length > 0 ? (
-            transactions.map((transaction, index) => (
-              <Transactions key={index} transaction={transaction}/>
-            ))
+        {transactions.length > 0 ? (
+          transactions.slice().reverse().map((transaction, index) => (
+            <Transactions key={index} transaction={transaction} />
+          ))
+        ) : (
+          isFound ? (
+            <p className="text-center text-2xl text-gray-500 mt-20">{"You don't have any transactions."}</p>
           ) : (
-            isFound ? (
-              <p className="text-center text-2xl text-gray-500 mt-20">{"You don't have any transactions."}</p>
-            ) : (
-              <p className="text-center text-2xl text-gray-500 mt-20">Transactions not found.</p>
-            )
-          )}
+            <p className="text-center text-2xl text-gray-500 mt-20">Transactions not found.</p>
+          )
+        )}
         </div>
     </div>
   )

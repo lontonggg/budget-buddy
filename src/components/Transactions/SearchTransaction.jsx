@@ -66,14 +66,16 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
     }
 
     const handleSelected = async (e) => {
-        setCategory(e.value);
-        const data = await handleCategoryFilter();
-        getSearchResults(data);
+        if(e){
+            setCategory(e.value);
+            const data = await handleCategoryFilter();
+            getSearchResults(data);
 
-        if(data.length == 0){
-            searchFound(false);
-        } else{
-            searchFound(true);
+            if(data.length == 0){
+                searchFound(false);
+            } else{
+                searchFound(true);
+            }
         }
     }
 
@@ -82,9 +84,7 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
         value: selection,
         label: selection
     }))
-
     
-
   return (
     <div className='flex gap-3 items-center'>
         <form onSubmit={handleIncomeFilter} className='flex gap-3'>
@@ -100,10 +100,9 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
             placeholder={"Category"}
             onChange={handleSelected}
             maxMenuHeight={true}
-    
+            isClearable={true}
         />
-     
-    
+
         <form onSubmit={handleSubmit} className='flex gap-3'>
             <input id="searchbar" name="searchbar" placeholder="Search Transactions" value={query} onChange={(e) => setQuery(e.target.value)} className='bg-indigo-200 rounded-md font-normal text-sm p-2 text-black' ></input>
             <button type="submit" className='text-sm font-semibold bg-indigo-400 p-2 rounded-lg hover:opacity-90' onClick={(handleSubmit)}>Search</button>

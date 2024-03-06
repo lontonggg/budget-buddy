@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import React from 'react'
+import toast from 'react-hot-toast';
 
 export const TransactionPageComponent = ({transaction}) => {
   const [user, setUser] = useState(null);
@@ -18,7 +19,7 @@ export const TransactionPageComponent = ({transaction}) => {
       method: "DELETE",
     });
     if(!res.ok){
-      throw new Error("Failed to delete transaction")
+      toast.error("Failed to delete transaction!")
     }
   }
 
@@ -76,9 +77,12 @@ export const TransactionPageComponent = ({transaction}) => {
     deleteTransaction();
     updateUser(userData);
 
+    
     router.refresh();
     router.push("/");
     router.refresh();
+
+    toast.success("Delete success!")
   }
   return (
     <div className='grid grid-col justify-center h-screen'>

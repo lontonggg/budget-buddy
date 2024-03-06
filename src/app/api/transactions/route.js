@@ -17,7 +17,6 @@ export async function POST(request) {
         })
         return NextResponse.json({message: "Success", data: createdTransaction}, {status: 201})
     } catch (error) {
-        console.log(error)
         return NextResponse.json({message: "Error", error}, {status: 500})
     }
 }

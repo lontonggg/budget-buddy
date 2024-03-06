@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export const Register = () => {
     const [clicked, setClicked] = useState(false);
@@ -29,9 +30,13 @@ export const Register = () => {
         });
         const data = await res.json();
         if(res.message === "Register Failed"){
-            throw new Error("Register Failed");
+            toast.error("Register Failed");
+        } else{
+            router.push("/")
+            router.refresh();
+            toast.success("Register success!")
         }
-        router.push("/")
+       
     }
 
     return (  
