@@ -1,25 +1,24 @@
-import { HomeApp } from "@/components/HomeApp";
-import { TransactionsLayout } from "@/components/TransactionsContainer";
+
+import { Header } from "@/components/Home/Header";
+import {getServerSession} from "next-auth"
+import { authOptions } from "@/utils/auth";
+import { HomeApp } from "@/components/Home/HomeApp";
+import { WelcomePage } from "@/components/Home/WelcomePage";
 
 const Home = async () => {
-    const getUser = async () => {
-      try{
-        const res = await fetch(`http://localhost:3000/api/users`, {
-          cache: "no-store"
-        })
-        return res.json();
-      }catch (error){
-        console.log("Failed to get user", error)
-      }
-    }
-    
-    const { users } = await getUser();
-
-    return (
+    const session = await getServerSession(authOptions);
+    if(session?.user){
+      return (
         <div>
-          <HomeApp user={users[0]}/>
+          <Header />
+          <HomeApp userId={session.user.id}/>
         </div>
-    );
+      );
+    } else{
+      return (
+        <WelcomePage/>
+      )
+    }
 }
 
 export default Home;

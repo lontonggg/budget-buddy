@@ -1,24 +1,15 @@
-import { TransactionForm } from '@/components/TransactionForm';
+import { TransactionForm } from '@/components/Transactions/TransactionForm';
 import React from 'react'
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/utils/auth';
 
-const getUser = async () => {
-  try{
-    const res = await fetch(`http://localhost:3000/api/users`, {
-      cache: "no-store"
-    })
-    return res.json();
-  }catch (error){
-    console.log("Failed to get user", error)
-  }
-}
-
-const { users } = await getUser();
-const user = users[0]
-
-export default function Page({}) {
+const Page = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <div className='h-screen p-20'>
-      <TransactionForm user={user}/>
+      <TransactionForm userId={session.user.id}/>
     </div>
   )
 }
+
+export default Page;
