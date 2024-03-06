@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 const getUser = async (id) => {
     try{
@@ -82,13 +83,15 @@ export const TransactionForm = ({userId}) => {
             transactionData["user_id"] = user.id;
             createTransaction()
             updateUserBalance(userData)
-    
+
+
             router.refresh();
             router.push("/");
             router.refresh();
+            toast.success("Successfully added your transaction!")
         } catch (error) {
             setClicked(false)
-            console.log(error)
+            toast.error("Failed to add transaction!")
         }
        
     }
@@ -130,7 +133,7 @@ export const TransactionForm = ({userId}) => {
 
     return (
         <div className='flex justify-center align-center'>
-            <div className='bg-white h-max-screen w-10/12 rounded-2xl shadow-xl'>
+            <div className='bg-white h-max-screen w-max-screen w-1/2 rounded-2xl shadow-xl'>
             <div className='flex justify-between items-center bg-indigo-500 p-5 rounded-t-xl text-xl text-white font-bold '>
                 <div>Create Transactions</div>
             </div>
@@ -155,7 +158,7 @@ export const TransactionForm = ({userId}) => {
                     {options}
                 </select>
                 <label className='font-semibold'>Description</label>
-                <textarea id="description" name="description" onChange={handleChange} className='rounded-lg p-3 border-slate-300 border-2'></textarea>
+                <textarea id="description" name="description" onChange={handleChange} className='rounded-lg p-3 border-slate-300 border-2 resize-none h-[125px]'></textarea>
                 <input type="submit" value="Create Transaction" className='bg-indigo-500 text-white font-semibold rounded-lg p-3 mt-5 hover:opacity-90 disabled:opacity-80' disabled={clicked} />
             </form>
             </div>

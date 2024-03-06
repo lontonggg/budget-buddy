@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useState } from 'react';
 import {signIn} from 'next-auth/react'
+import toast from 'react-hot-toast';
 
 export const Login = () => {
   const router = useRouter();
@@ -19,11 +20,12 @@ export const Login = () => {
       });
 
       if(loginData?.error){
-        console.log(loginData.error);
+        toast.error("Login Failed!");
       } else {
         router.refresh()
         router.push('/')
         router.refresh()
+        toast.success("Login Success!")
       }
   }
 

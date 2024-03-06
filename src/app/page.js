@@ -7,7 +7,6 @@ import { WelcomePage } from "@/components/Home/WelcomePage";
 
 const Home = async () => {
     const session = await getServerSession(authOptions);
-    console.log(session)
     if(session?.user){
       return (
         <div>

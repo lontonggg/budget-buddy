@@ -30,7 +30,6 @@ export async function PATCH(request, {params}){
         })
         return NextResponse.json({message: "User Updated", updatedUser}, {status: 200});
     } catch (error) {
-        console.log(error)
         return NextResponse.json({message: "Error", error}, {status: 500});
     }
 }
