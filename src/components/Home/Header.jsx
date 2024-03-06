@@ -6,7 +6,7 @@ import React from 'react'
 
 export const Header = () => {
   return (
-    <nav className='flex justify-between items-center bg-indigo-500 text-white px-5'>
+    <nav className='w-screen flex justify-between items-center bg-indigo-500 text-white px-5'>
         <Link href="/">
           <div className='p-5 font-bold text-3xl hover:scale-105 transition-transform duration-300'>BudgetBuddy</div>
         </Link>
