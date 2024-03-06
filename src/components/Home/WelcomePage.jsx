@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const WelcomePage = () => {
   return (
     <div className='flex flex-col items-center justify-center h-screen w-screen text-center bg-indigo-900'>
-        <div className='flex flex-col gap-20 justify-center items-center bg-white p-20 py-40 rounded-3xl shadow-xl'> 
+        <div className='flex flex-col gap-20 justify-center items-center bg-white py-32 w-max-screen w-5/6 rounded-3xl shadow-xl'> 
             <div className='flex flex-col justify-center gap-3'>
                 <div className='text-5xl font-bold'>Welcome to </div>
                 <div className='text-7xl font-bold text-indigo-500 hover:scale-105 transition-transform duration-500'>BudgetBuddy!</div>

@@ -47,7 +47,7 @@ export const DoughnutChart = ({income, expense}) => {
     }, [expense, income, userExpense, userIncome])
   return (
     <div>
-        <canvas ref={chartRef} style={{width: "400px", height: "400px"}} />
+        <canvas ref={chartRef} style={{width: "350px", height: "350px"}} />
     </div>
   )
 }

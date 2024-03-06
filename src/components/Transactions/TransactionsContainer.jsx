@@ -24,7 +24,7 @@ export const TransactionsContainer = ({userId}) => {
   return (
     <div className='bg-white h-max-screen h-5/6 w-screen rounded-2xl shadow-xl'>
         <div className='flex justify-between items-center bg-indigo-500 p-5 rounded-t-xl text-xl text-white font-bold '>
-        <div>Transactions</div>
+        <div className='text-3xl'>Transactions</div>
           <SearchTransaction getSearchResults={(results) => setTransactions(results)} searchFound={(isFound) => setIsFound(isFound)} userId={userId} />
       </div>
         <div className='flex flex-col p-10 gap-4 h-max-screen h-5/6 overflow-y-scroll'>
