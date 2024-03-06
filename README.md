@@ -5,7 +5,7 @@ A simple React Based money management app that can help you track your incomes a
 
 ### Dummy Account :
 
-Username : Dummy
+Username : Guest
 
 Password : 12345678
 
