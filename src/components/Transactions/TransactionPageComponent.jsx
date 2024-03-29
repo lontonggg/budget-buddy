@@ -15,7 +15,7 @@ export const TransactionPageComponent = ({transaction}) => {
   );
 
   const deleteTransaction = async () => {
-    const res = await fetch(`http://localhost:3000/api/transactions/${transaction.id}`, {
+    const res = await fetch(`${process.env.WEB_URL}/api/transactions/${transaction.id}`, {
       method: "DELETE",
     });
     if(!res.ok){
@@ -25,7 +25,7 @@ export const TransactionPageComponent = ({transaction}) => {
 
   const getUser = async () => {
     try{
-    const res = await fetch(`http://localhost:3000/api/users/${transaction.user_id}`, {
+    const res = await fetch(`${process.env.WEB_URL}/api/users/${transaction.user_id}`, {
         cache: "no-store"
     })
     

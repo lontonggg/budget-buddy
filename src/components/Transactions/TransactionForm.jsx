@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 
 const getUser = async (id) => {
     try{
-      const res = await fetch(`http://localhost:3000/api/users/${id}`, {
+      const res = await fetch(`${process.env.WEB_URL}/api/users/${id}`, {
         cache: "no-store"
       })
       return res.json();

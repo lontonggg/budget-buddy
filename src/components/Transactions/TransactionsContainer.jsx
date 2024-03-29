@@ -10,7 +10,7 @@ export const TransactionsContainer = ({userId}) => {
 
   useEffect(() => {
     const getTransactionsOfUser = async () => {
-        const res = await fetch(`http://localhost:3000/api/transactions?id=${userId}`, {
+        const res = await fetch(`${process.env.WEB_URL}/api/transactions?id=${userId}`, {
           cache: "no-store"
           }
         )
