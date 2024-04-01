@@ -24,7 +24,7 @@ export const Balance = ({userId}) => {
             setIncome(user.income);
             setExpense(user.expense);
             setBalance(user.balance);
-            }catch (error){
+            } catch (error){
             console.log("Failed to get user", error)
             }
         }
@@ -32,9 +32,9 @@ export const Balance = ({userId}) => {
         }, [userId]);
     return (
         <div className='flex flex-col justify-center items-center gap-5 h-max-screen h-5/6'>
-        <div className='flex flex-col bg-white gap-10 justify-between items-center p-10 py-10 rounded-xl shadow-xl w-[425px]'>
-        <div className='hover:scale-105 transition-transform duration-300'>
-                <div className='text-3xl text-left'>Total Balance</div>
+            <div className='flex flex-col bg-white gap-10 justify-between items-center p-10 py-10 rounded-xl shadow-xl w-[425px]'>
+            <div className='hover:scale-105 transition-transform duration-300'>
+                    <div className='text-3xl text-left'>Total Balance</div>
                     <div className='font-bold text-4xl text-left'>{(new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
                     balance,
                 ))}</div>

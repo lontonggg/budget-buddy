@@ -6,9 +6,9 @@ import { authOptions } from '@/utils/auth';
 const Page = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <div className='h-screen p-20'>
+    <>
       <TransactionForm userId={session.user.id}/>
-    </div>
+    </>
   )
 }
 
