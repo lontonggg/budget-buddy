@@ -84,7 +84,7 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
         value: selection,
         label: selection
     }))
-    
+
   return (
     <div className='flex gap-3 items-center'>
         <form onSubmit={handleIncomeFilter} className='flex gap-3'>
