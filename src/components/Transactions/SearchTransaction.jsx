@@ -11,7 +11,7 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
 
 
     const getFilterTransaction = async (e) => {
-        const response = await fetch(`${process.env.WEB_URL}/api/transactions?id=${userId}&type=${filter}`)
+        const response = await fetch(`https://budget-buddy-website.vercel.app/api/transactions?id=${userId}&type=${filter}`)
         const filteredData = await response.json();
         getSearchResults(filteredData.data);
         if(filteredData.data.length == 0){
@@ -45,7 +45,7 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`${process.env.WEB_URL}/api/transactions?id=${userId}&title=${query}`)
+        const response = await fetch(`https://budget-buddy-website.vercel.app/api/transactions?id=${userId}&title=${query}`)
         const filteredData = await response.json();
         getSearchResults(filteredData.data);
         if(filteredData.data.length == 0){
@@ -57,7 +57,7 @@ export default function SearchTransaction({getSearchResults, searchFound, userId
 
     const handleCategoryFilter = async (e) => {
 
-        const response = await fetch(`${process.env.WEB_URL}/api/transactions?id=${userId}&category=${category}`)
+        const response = await fetch(`https://budget-buddy-website.vercel.app/api/transactions?id=${userId}&category=${category}`)
         const filteredData = await response.json();
         const data = filteredData.data
 

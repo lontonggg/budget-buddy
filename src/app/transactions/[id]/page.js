@@ -4,7 +4,7 @@ import { Header } from '@/components/Home/Header'
 
 const getTransactionsOfUser = async (id) => {
     try{
-        const res = await fetch(`${process.env.WEB_URL}/api/transactions/${id}`, {
+        const res = await fetch(`https://budget-buddy-website.vercel.app/api/transactions/${id}`, {
         cache: "no-store"
         })
         return res.json();
@@ -15,7 +15,7 @@ const getTransactionsOfUser = async (id) => {
 
 const getUser = async (id) => {
   try{
-    const res = await fetch(`${process.env.WEB_URL}/api/users/${id}`, {
+    const res = await fetch(`https://budget-buddy-website.vercel.app/api/users/${id}`, {
       cache: "no-store"
     })
     return res.json();

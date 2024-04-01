@@ -14,7 +14,7 @@ export const Balance = ({userId}) => {
     useEffect(() => {
         const getUser = async () => {
             try{
-            const res = await fetch(`${process.env.WEB_URL}/api/users/${userId}`, {
+            const res = await fetch(`https://budget-buddy-website.vercel.app/api/users/${userId}`, {
                 cache: "no-store"
             })
             
@@ -24,7 +24,7 @@ export const Balance = ({userId}) => {
             setIncome(user.income);
             setExpense(user.expense);
             setBalance(user.balance);
-            }catch (error){
+            } catch (error){
             console.log("Failed to get user", error)
             }
         }
